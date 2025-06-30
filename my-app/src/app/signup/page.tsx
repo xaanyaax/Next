@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
@@ -19,7 +19,20 @@ export default function Signup() {
     const onSignup = async () => {
 
 
+
     }
+
+
+
+    // check if username, email and password are entered
+    useEffect(() => {
+        if (user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
+            setButtonDisabled(false);
+        } else {
+            setButtonDisabled(true);
+        }
+    }, [user]);
+
 
 
     return (<div className="flex flex-col items-center justify-center min-h-screen py-2">signup
@@ -33,7 +46,7 @@ export default function Signup() {
     <input type="password"  id="username" value={user.password} onChange={(e) => setUser({...user , password: e.target.value})} placeholder="Password" className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"/>
 
     <button className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-    onClick={onSignup}>Signup here</button>
+    onClick={onSignup}>{buttonDisabled ? "No signup" : "Signup here"}</button>
     
     <Link href="/login">Visit login page</Link>
     </div>
