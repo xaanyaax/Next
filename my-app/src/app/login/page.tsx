@@ -21,6 +21,7 @@ export default function Login() {
             const response = await axios.post("/api/users/login", user);
             console.log("Login success", response.data);
             // toast.success("Login success")
+            //toast not complete yet
             router.push("/profile");
 
         }
